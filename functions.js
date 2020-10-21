@@ -1,47 +1,32 @@
 "use strict";
 
-function wordsInCommon(words1, words2) {
-  // Replace this with your code
-  const words1Set = new Set(words1);
-  const words2Set = new Set(words2);
-  const results = new Set();
+// 1. isHometown
 
-  for (const word of words1Set) {
-    if (words2Set.has(word)) {
-      results.add(word);
-    }
-  }
-  const resultArray = Array.from(results);
-  return resultArray;
+function isHometown(town) {
+  return town === "San Francisco";
 }
 
-function kidsGame(names) {
-  const output = [names.shift()];
+// 2. getFullName
+function getFullName(firstName, lastName) {
+  return `${firstName} ${lastName}`;
+}
 
-  const firstLetterToWords = {};
+// 3. calculateTotal
+function calculateTotal(basePrice, state, tax = 0.05) {
+  let subtotal = basePrice * (1 + tax);
 
-  for (const name of names) {
-    if (firstLetterToWords[name[0]] === undefined) {
-      firstLetterToWords[name[0]] = [name];
+  let fee = 0;
+  if (state === "CA") {
+    fee = 0.03 * subtotal;
+  } else if (state === "PA") {
+    fee = 2;
+  } else if (state === "MA") {
+    if (basePrice <= 100) {
+      fee = 1;
     } else {
-      firstLetterToWords[name[0]].push(name);
+      fee = 3;
     }
   }
 
-  while (true) {
-    const lastWord = output[output.length - 1];
-    console.log(lastWord);
-    const startLetter = lastWord[lastWord.length - 1];
-    console.log(startLetter);
-
-    console.log(firstLetterToWords);
-    if (firstLetterToWords[startLetter] === []) {
-      break;
-    }
-
-    const word = firstLetterToWords[startLetter].shift();
-    output.push(word);
-  }
-
-  return output;
+  return subtotal + fee;
 }
