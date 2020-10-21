@@ -30,12 +30,9 @@ function kidsGame(names) {
 
   while (true) {
     const lastWord = output[output.length - 1];
-    console.log(lastWord);
     const startLetter = lastWord[lastWord.length - 1];
-    console.log(startLetter);
 
-    console.log(firstLetterToWords);
-    if (firstLetterToWords[startLetter] === []) {
+    if (firstLetterToWords[startLetter].length === 0) {
       break;
     }
 
